@@ -3,7 +3,9 @@ package Thread.thread.com;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+//start stop sleep suspend resume
+//wait notify notifyAll
+//join
 public class Main {
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new MyThread(), "t1");
@@ -36,8 +38,12 @@ public class Main {
 			System.out.println(emp.getFirstName() + "      " + emp.getSalary() );
 		}
 		
+		
 	}
 }
+
+
+
 
 class Employee{
 	private String firstName;
@@ -80,6 +86,7 @@ class MyThread implements Runnable{
 }
 
 class MyThread2 extends Thread{
+	
 	public MyThread2(String threadName) {
 		super(threadName);
 	}
@@ -102,3 +109,18 @@ class MyThread2 extends Thread{
 	}
 }
 
+//creating a dead lock
+class MyRunable implements Runnable{
+	Employee a = new Employee("aman", 2000);
+	Employee b = new Employee("kebde", 3000);
+	public void run() {
+		// TODO Auto-generated method stub
+		synchronized(a) {
+			System.out.println(a.getFirstName());
+			synchronized(b) {
+				System.out.println(b.getFirstName());
+			}
+		}
+	}
+	
+}
